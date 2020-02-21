@@ -148,11 +148,18 @@ namespace DREditor.Toolbox
                                         lastLine = normalizedLines[normalizedLines.Count - 1];
                                     }
                                     currentDialogue.Lines.AddRange(normalizedLines);
-                                    currentDialogue.Lines[currentDialogue.Lines.Count - 1].SFX.Add(_sfxClip);
+                                    if (!(sfxName == "0"))
+                                    {
+                                        currentDialogue.Lines[currentDialogue.Lines.Count - 1].SFX.Add(_sfxClip);
+                                    }
 
-                                    _dict = buildExprDictionary(currentDialogue.Lines[currentDialogue.Lines.Count - 1].Speaker);
-                                    currentDialogue.Lines[currentDialogue.Lines.Count - 1].Expression = currentDialogue.Lines[currentDialogue.Lines.Count - 1].Speaker.Expressions[_dict[spriteName]];
-                                    currentDialogue.Lines[currentDialogue.Lines.Count - 1].ExpressionNumber = _dict[spriteName] + 1;
+                                    if (!(spriteName == "0"))
+                                    {
+                                        _dict = buildExprDictionary(currentDialogue.Lines[currentDialogue.Lines.Count - 1].Speaker);
+                                        currentDialogue.Lines[currentDialogue.Lines.Count - 1].Expression = currentDialogue.Lines[currentDialogue.Lines.Count - 1].Speaker.Expressions[_dict[spriteName]];
+                                        currentDialogue.Lines[currentDialogue.Lines.Count - 1].ExpressionNumber = _dict[spriteName] + 1;
+                                    }
+
 
                                 } else
                                 {
