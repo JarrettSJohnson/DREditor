@@ -39,6 +39,8 @@ namespace DREditor.Toolbox
 
         // Time to wait before showing the progress
         private double waitForProgress = 0.5;
+        private char[] _delimiters = { ':', '/' };
+        private string[] _parameters;
 
         // Various formatting parameters
         private string[] _parameters;
@@ -143,6 +145,7 @@ namespace DREditor.Toolbox
                                         
                                     }
 
+
                                     int speakerIndex;
                                     Character speaker = FindCharacterInDB(characterName, out speakerIndex);
                                     string prependSpeaker = null;
@@ -160,6 +163,7 @@ namespace DREditor.Toolbox
                                         lastLine = normalizedLines[normalizedLines.Count - 1];
                                     }
                                     currentDialogue.Lines.AddRange(normalizedLines);
+
                                     if (formatting)
                                     {
                                         if (!(sfxName == "0"))
@@ -173,8 +177,6 @@ namespace DREditor.Toolbox
                                             currentDialogue.Lines[currentDialogue.Lines.Count - 1].Expression = currentDialogue.Lines[currentDialogue.Lines.Count - 1].Speaker.Expressions[_dict[spriteName]];
                                             currentDialogue.Lines[currentDialogue.Lines.Count - 1].ExpressionNumber = _dict[spriteName] + 1;
                                         }
-                                    }
-
 
                                 } else
                                 {
