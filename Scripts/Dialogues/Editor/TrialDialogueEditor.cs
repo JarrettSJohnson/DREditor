@@ -266,7 +266,12 @@ namespace DREditor.Dialogues.Editor
             using (new EditorGUILayout.HorizontalScope())
             {
                 GUILayout.Label("VFX:", GUILayout.Width(40));
-                currLine.vfxIdx = EditorGUILayout.IntPopup(currLine.vfxIdx, cameraVFXDatabase.GetNames().ToArray(), ContainerUtil.Iota(cameraVFXDatabase.vfxs.Count));
+                var vfxList = cameraVFXDatabase.GetNames().ToArray();
+                vfxList = Utility.ContainerUtil.PrependedList(vfxList, "None");
+                var idx = EditorGUILayout.IntPopup(currLine.vfxIdx + 1, vfxList, ContainerUtil.Iota(vfxList.Length)) - 1;
+                Debug.Log(idx);
+                currLine.vfxIdx = idx;
+
             }
         }
         private void EditCamAnim(TrialLine currLine)

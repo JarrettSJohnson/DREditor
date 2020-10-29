@@ -75,6 +75,18 @@ namespace DREditor.Camera
 
         public void ChangeFocus(float charnum) => SeatFocus = charnum;
 
+        public void ChangeFocus(DREditor.Characters.Character character)
+        {
+            if (character is DREditor.Characters.Headmaster)
+            {
+                SetHeadmasterFocus(true);
+            } else {
+                SetHeadmasterFocus(false);
+                ChangeFocus((float) students.IndexOf(character as DREditor.Characters.Student));
+
+            }
+        }
+
         public void TriggerAnim(int id) => CameraAnimator.SetTrigger(id);
 
         public void TriggerAnim(string tag) => CameraAnimator.SetTrigger(tag);
