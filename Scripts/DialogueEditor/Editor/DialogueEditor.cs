@@ -232,6 +232,8 @@ namespace DREditor.DialogueEditor.Editor
                                 dia.Lines[i].Events.Add(CreateInstance<SceneEvent>());
                             }
 
+                            DialogueEventButton(currLine);
+
                             using (new EditorGUILayout.HorizontalScope())
                             {
                                 GUILayout.Label("Automatic", GUILayout.Width(60));
@@ -620,6 +622,30 @@ namespace DREditor.DialogueEditor.Editor
                 }
             }
             GUILayout.Space(30);
+        }
+
+        private void DialogueEventButton(Line currLine)
+        {
+            if (currLine.DialogueEvents != null)
+            {
+                for (var j = 0; j < currLine.DialogueEvents.Count; j++)
+                {
+                    var dEvent = currLine.DialogueEvents[j];
+                    using (new EditorGUILayout.HorizontalScope())
+                    {
+                        currLine.DialogueEvents[j] = Utility.Editor.HandyFields.UnityField(dEvent, 100, 20);
+                        if (GUILayout.Button("x", GUILayout.Width(20)))
+                        {
+                            currLine.DialogueEvents.Remove(dEvent);
+                        }
+                    }
+                }
+            }
+
+            if (GUILayout.Button("Add Dial Ev."))
+            {
+                currLine.DialogueEvents.Add(CreateInstance<DialogueEvent>());
+            }
         }
     }
 }
